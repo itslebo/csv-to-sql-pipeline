@@ -1,6 +1,6 @@
 # Dynamic Pricing — CSV to MySQL Pipeline
 
-A Python project that loads a dynamic pricing dataset from a CSV file into a MySQL database and provides a script to query the data back out.
+This project demonstrates a simple, beginner-friendly workflow that other developers can learn from. It shows one straightforward way to integrate a MySQL database into a Python project — loading data from a CSV file, persisting it to a database, and querying it back out. No complex frameworks, just the essentials.
 
 ## What it does
 
