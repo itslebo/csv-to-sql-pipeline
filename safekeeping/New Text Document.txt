@@ -1,6 +1,0 @@
-Le Wagon — start.lewagon.com
-https://start.lewagon.com/courses
-
-Oxylabs — oxylabs.io/blog/python-web-scraping
-ScrapingBee — scrapingbee.com/blog/web-scraping-tutorial
-DataCamp — datacamp.com/courses/web-scraping-with-python
