@@ -1,78 +1,41 @@
 # Dynamic Pricing — CSV to MySQL Pipeline
 
-This project reads a CSV dataset, loads it into a MySQL database, and queries it back out using Python and pandas.
+A Python project that loads a dynamic pricing dataset from a CSV file into a MySQL database and provides a script to query the data back out.
 
-## Workflow
+## What it does
 
-### 1. Set up the environment
+### write.py
+Reads `dynamic_pricing.csv` into a pandas DataFrame, prints a preview and statistical summary of the data, then writes the entire dataset to a MySQL table called `dynamic_pricing`. If the table already exists, it is replaced.
 
-Create and activate a virtual environment:
+### read.py
+Connects to the same MySQL database and retrieves all records from the `dynamic_pricing` table, printing the first few rows to the console.
 
-```powershell
-python -m venv venv
-.\venv\Scripts\Activate.ps1
+## Requirements
+
+- Python 3.x
+- MySQL server with an existing database
+- A `.env` file in the project root containing:
+
+```
+DB_URL="mysql+pymysql://username:password@host:port/database_name"
 ```
 
-Install dependencies:
+## Setup
 
 ```powershell
 pip install -r requirements.txt
 ```
 
-### 2. Configure the database connection
+## Usage
 
-Create a `.env` file in the project root with your MySQL connection string:
-
-```
-DB_URL="mysql+pymysql://username:password@127.0.0.1:3306/database_name"
-```
-
-> Note: Wrap the value in quotes if your password contains special characters like `#`.
-
-Make sure the target database already exists in MySQL, and that the user has write permissions:
-
-```sql
-CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
-GRANT ALL PRIVILEGES ON database_name.* TO 'username'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-### 3. Write the CSV to the database
-
-Run `write.py` to load `dynamic_pricing.csv` into the `dynamic_pricing` table:
+Load data into the database:
 
 ```powershell
 python write.py
 ```
 
-This script:
-- Reads the CSV using pandas
-- Prints a preview and summary of the data
-- Connects to MySQL via SQLAlchemy
-- Writes the data to the `dynamic_pricing` table (replacing it if it already exists)
-
-### 4. Read data from the database
-
-Run `read.py` to query and display the data from the database:
+Query data from the database:
 
 ```powershell
 python read.py
-```
-
-## Project Structure
-
-```
-.
-├── write.py              # Loads CSV into MySQL
-├── read.py               # Queries data from MySQL
-├── dynamic_pricing.csv   # Source dataset (not committed)
-├── .env                  # Database credentials (not committed)
-├── requirements.txt      # Python dependencies
-└── .gitignore
-```
-
-## Generating requirements.txt
-
-```powershell
-pip freeze > requirements.txt
 ```
